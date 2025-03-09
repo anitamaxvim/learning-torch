@@ -1,0 +1,13 @@
+[project]
+name = "learning-pytorch"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "matplotlib>=3.10.1",
+    "numpy==1.26.4",
+    "pandas>=2.2.3",
+    "torch==2.2.0",
+    "torchvision>=0.17.0",
+]
