@@ -1,3 +1,8 @@
+"""
+This implementation computes the forward pass using operations on PyTorch Tensors, and uses PyTorch
+autograd to compute gradients.
+"""
+
 import math
 
 import matplotlib.pyplot as plt

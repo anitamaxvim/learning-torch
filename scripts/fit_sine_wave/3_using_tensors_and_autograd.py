@@ -1,3 +1,12 @@
+"""
+This implementation computes the forward pass using operations on PyTorch Tensors,
+and uses PyTorch autograd to compute gradients.
+
+A PyTorch Tensor represents a node in a computational graph. If x is a Tensor that
+has x.requires_grad=True then x.grad is another Tensor holding the gradient of x
+with respect to some scalar value.
+"""
+
 import math
 
 import matplotlib.pyplot as plt
@@ -60,10 +69,10 @@ for t in range(2000):
     # in autograd.
 
     with torch.no_grad():
-        a -= learning_rate * a.grad # type: ignore
-        b -= learning_rate * b.grad # type: ignore
-        c -= learning_rate * c.grad # type: ignore
-        d -= learning_rate * d.grad # type: ignore
+        a -= learning_rate * a.grad  # type: ignore
+        b -= learning_rate * b.grad  # type: ignore
+        c -= learning_rate * c.grad  # type: ignore
+        d -= learning_rate * d.grad  # type: ignore
 
         # Manually zero the gradients after updating weights
         a.grad = None

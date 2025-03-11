@@ -1,28 +1,30 @@
+"""
+This implementation uses numpy to manually compute the forward pass, loss, and backward pass.
+
+A numpy array is a generic n-dimensional array; it does not know anything about deep learning
+or gradients or computational graphs, and is just a way to perform generic numeric computations.
+"""
+
 import math
 
 import matplotlib.pyplot as plt
-import torch
-
-dtype = torch.float
-device = torch.device("cpu")
-# device = torch.device("cuda:0") # Uncomment this to run on GPU
-
+import numpy as np
 
 # Create random input and output data
-x = torch.linspace(-math.pi, math.pi, 2000, device=device, dtype=dtype)
-y = torch.sin(x)
+x = np.linspace(-math.pi, math.pi, 2000)
+y = np.sin(x)
 
 # Randomly initialize weights
-a = torch.randn((), device=device, dtype=dtype)
-b = torch.randn((), device=device, dtype=dtype)
-c = torch.randn((), device=device, dtype=dtype)
-d = torch.randn((), device=device, dtype=dtype)
+a = np.random.randn()
+b = np.random.randn()
+c = np.random.randn()
+d = np.random.randn()
 
 # Set up the plot
 plt.ion()
 fig, ax = plt.subplots()
 ax.plot(x, y, label="True Function (sin(x))", color="blue")
-(fitted_line,) = ax.plot(x, torch.zeros_like(x), label="Polynomial Fit", color="red")
+(fitted_line,) = ax.plot(x, np.zeros_like(x), label="Polynomial Fit", color="red")
 ax.legend()
 
 learning_rate = 1e-6
@@ -32,7 +34,7 @@ for t in range(2000):
     y_pred = a + b * x + c * x**2 + d * x**3
 
     # Compute and print loss = (a - y)^2
-    loss = (y_pred - y).pow(2).sum().item()
+    loss = np.square(y_pred - y).sum()
     if t % 10 == 9:
         print(f"Iteration {t}: Loss = {loss:.4f}")
 
@@ -60,6 +62,4 @@ for t in range(2000):
 plt.ioff()
 plt.show()
 
-print(
-    f"Result: y = {a.item():.4f} + {b.item():.4f} x + {c.item():.4f} x^2 + {d.item():.4f} x^3"
-)
+print(f"Result: y = {a:.4f} + {b:.4f} x + {c:.4f} x^2 + {d:.4f} x^3")
