@@ -4,7 +4,9 @@ __pycache__/
 build/
 dist/
 data/
+!data/.gitkeep
 models/
+!models/.gitkeep
 wheels/
 *.egg-info
 
