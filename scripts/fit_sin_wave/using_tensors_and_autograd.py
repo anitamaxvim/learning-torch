@@ -41,13 +41,13 @@ for t in range(2000):
     # Now loss is a Tensor of shape (1,)
     # loss.item() gets the scalar value held in the loss.
     loss = (y_pred - y).pow(2).sum()
-    if t % 100 == 99:
+    if t % 10 == 9:
         print(f"Iteration {t}: Loss = {loss.item():.4f}")
 
         # Update the plot
         fitted_line.set_ydata(y_pred.detach().numpy())
         plt.title(f"Iteration {t}, Loss: {loss.item():.4f}")
-        plt.pause(0.15)  # Pause to update the plot
+        plt.pause(0.01)  # Pause to update the plot
 
     # Use autograd to compute the backward pass. This call will compute the
     # gradient of loss with respect to all Tensors with requires_grad=True.
@@ -60,10 +60,10 @@ for t in range(2000):
     # in autograd.
 
     with torch.no_grad():
-        a -= learning_rate * a.grad
-        b -= learning_rate * b.grad
-        c -= learning_rate * c.grad
-        d -= learning_rate * d.grad
+        a -= learning_rate * a.grad # type: ignore
+        b -= learning_rate * b.grad # type: ignore
+        c -= learning_rate * c.grad # type: ignore
+        d -= learning_rate * d.grad # type: ignore
 
         # Manually zero the gradients after updating weights
         a.grad = None

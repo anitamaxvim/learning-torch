@@ -33,13 +33,13 @@ for t in range(2000):
 
     # Compute and print loss = (a - y)^2
     loss = (y_pred - y).pow(2).sum().item()
-    if t % 100 == 99:
+    if t % 10 == 9:
         print(f"Iteration {t}: Loss = {loss:.4f}")
 
         # Update the plot
         fitted_line.set_ydata(y_pred)
         plt.title(f"Iteration {t}, Loss: {loss:.4f}")
-        plt.pause(0.15)  # Pause to update the plot
+        plt.pause(0.01)  # Pause to update the plot
 
     # Backpropagation
     grad_y_pred = 2.0 * (y_pred - y)
